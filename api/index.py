@@ -3,8 +3,9 @@ from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
 import os
 
-app = FastAPI()
-
+app = FastAPI(
+    root_path="/api"
+)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
