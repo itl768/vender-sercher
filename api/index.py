@@ -64,3 +64,4 @@ def search_items(keyword: str = ""):
     return filtered_df.to_dict(
         orient="records"
     )
+handler = app
