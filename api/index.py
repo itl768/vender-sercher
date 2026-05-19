@@ -46,5 +46,14 @@ def search_items(keyword: str = ""):
     return filtered_df.to_dict(
         orient="records"
     )
+from fastapi import Request
+
+@app.get("/{full_path:path}")
+async def catch_all(request: Request, full_path: str):
+
+    return {
+        "path": full_path,
+        "url": str(request.url)
+    }
 
 handler = app
