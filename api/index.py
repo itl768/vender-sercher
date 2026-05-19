@@ -5,10 +5,6 @@ import os
 
 app = FastAPI()
 
-# =========================
-# CORS
-# =========================
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -16,10 +12,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-# =========================
-# LOAD CSV
-# =========================
 
 BASE_DIR = os.path.dirname(__file__)
 
@@ -29,26 +21,16 @@ file_path = os.path.join(
 )
 
 df = pd.read_csv(file_path)
-
-# Fill missing values
 df = df.fillna("")
 
-# =========================
-# HOME
-# =========================
-
-@app.get("/")
+@app.get("")
 def home():
 
     return {
         "message": "CSV Backend Running"
     }
 
-# =========================
-# SEARCH API
-# =========================
-
-@app.get("/search")
+@app.get("/search/")
 def search_items(keyword: str = ""):
 
     if not keyword:
@@ -64,4 +46,5 @@ def search_items(keyword: str = ""):
     return filtered_df.to_dict(
         orient="records"
     )
+
 handler = app
