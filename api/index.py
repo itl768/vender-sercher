@@ -37,7 +37,7 @@ df = df.fillna("")
 # HOME
 # =========================
 
-@app.get("/")
+@app.get("/api/")
 def home():
 
     return {
@@ -48,7 +48,7 @@ def home():
 # SEARCH API
 # =========================
 
-@app.get("/search")
+@app.get("/api/search")
 def search_items(keyword: str = ""):
 
     if not keyword:
